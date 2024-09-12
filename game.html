@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四葉のクローバー</title>
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="icon" href="image/yotuba.png">
+</head>
+<body>
+    <div class="container">
+        <button id="draw-deck" onclick="drawCards()">
+            <img src="image/yama.png" alt="山札を引く" height="60px" width="160px" id="yama">    
+        </button>
+        <div id="card-area">
+            <div id="drawn-cards"></div>
+        </div>
+      
+    </div>
+    <div class="container">
+        <div id="selected-cards-area">
+            <h2>選択したカード:</h2>
+            <div id="selected-cards" onclick="returnCards()"></div>
+        </div>
+    
+
+        <div id="totals-area">
+            <h2>スートごとの合計値:</h2>
+            <p>ハート: <span id="hearts-total">0</span></p>
+            <p>ダイヤ: <span id="diamonds-total">0</span></p>
+            <p>クラブ: <span id="clubs-total">0</span></p>
+            <p>スペード: <span id="spades-total">0</span></p>
+            
+        </div>
+        <button id="reset-game" onclick="resetGame()" style="display:none;">
+            <img src="image/reset.png" alt="リセット" height="60px" width="160px" id="reset">
+        </button>
+    </div>
+       
+        
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

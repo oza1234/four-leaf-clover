@@ -19,27 +19,25 @@ window.onload = () => {
 // 山札からカードを引く
 function drawCards() {
     document.getElementById('draw-deck').style.display = 'none';
-    
+
     shuffleDeck().then(() => {
         fetch(`${deckApiUrl}/${deckId}/draw/?count=16`)
             .then(response => response.json())
             .then(data => {
-
                 const drawnCardsDiv = document.getElementById('drawn-cards');
                 drawnCardsDiv.innerHTML = ''; // 以前のカードをクリア
-                
-                    data.cards.forEach(card => {
-                        const cardImg = document.createElement('img');
-                        cardImg.src = card.image;
-                        cardImg.alt = `${card.value} of ${card.suit}`;
-                        cardImg.dataset.value = card.value;
-                        cardImg.dataset.suit = card.suit;
 
-                        cardImg.onclick = () => selectCard(cardImg);
+                data.cards.forEach(card => {
+                    const cardImg = document.createElement('img');
+                    cardImg.src = card.image;
+                    cardImg.alt = `${card.value} of ${card.suit}`;
+                    cardImg.dataset.value = card.value;
+                    cardImg.dataset.suit = card.suit;
 
-                        drawnCardsDiv.appendChild(cardImg);
-                    });
-                
+                    cardImg.onclick = () => selectCard(cardImg);
+
+                    drawnCardsDiv.appendChild(cardImg);
+                });
             });
     });
 }
@@ -238,4 +236,18 @@ function resetGame() {
 
     // 新しいデッキをシャッフルしてゲームをリセット
     shuffleDeck();
+}
+
+
+
+// 合計値のリセット
+function resetTotals() {
+    totalHearts = 0;
+    totalDiamonds = 0;
+    totalClubs = 0;
+    totalSpades = 0;
+    document.getElementById('hearts-total').textContent = totalHearts;
+    document.getElementById('diamonds-total').textContent = totalDiamonds;
+    document.getElementById('clubs-total').textContent = totalClubs;
+    document.getElementById('spades-total').textContent = totalSpades;
 }
